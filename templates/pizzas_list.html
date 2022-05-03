@@ -1,0 +1,12 @@
+{% for pizza in pizzas %}
+<div>
+    <p>{{pizza.name}}</p>
+    <p>{{pizza.price}}</p>
+    <p>{{pizza.size}}</p>
+    <p>toppings:</p>
+        {% for topping in pizza.toppings.all %}
+            {{ topping.name }}
+        {% endfor %}
+    <p>_________________________________________________________________________________</p>
+</div>
+{% endfor %}

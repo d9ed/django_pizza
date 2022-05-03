@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # 3rd party
     # Local
     'users.apps.UsersConfig',
+    'pizzas.apps.PizzasConfig',
 ]
 
 MIDDLEWARE = [
