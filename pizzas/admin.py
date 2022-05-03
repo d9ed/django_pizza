@@ -3,10 +3,13 @@ from tabbed_admin import TabbedModelAdmin
 
 from pizzas.models import Pizza, Topping
 
+class ToppingInLine(admin.StackedInline):
+    model = Pizza.toppings.through
+    # filter_horizontal = ("toppings",)
 
-class ToppingInline(admin.TabularInline):
-    model = Topping
-    extra = 1
+# class ToppingInline(admin.TabularInline):
+#     model = Topping
+#     extra = 1
 
 
 @admin.register(Topping)
@@ -16,7 +19,7 @@ class ToppingAdmin(TabbedModelAdmin):
         ('Main', {
             'fields': (
                 'name',
-                'pizza',
+                # 'pizza',
             )
         }),
     )
@@ -28,6 +31,7 @@ class ToppingAdmin(TabbedModelAdmin):
 
 @admin.register(Pizza)
 class PizzaAdmin(TabbedModelAdmin):
+    inlines = [ToppingInLine]
 
     main_tab = (
         ('Main', {
@@ -35,9 +39,10 @@ class PizzaAdmin(TabbedModelAdmin):
                 'name',
                 'price',
                 'size',
+                'image',
             )
         }),
-        ToppingInline
+        ToppingInLine
     )
 
     tabs = [
