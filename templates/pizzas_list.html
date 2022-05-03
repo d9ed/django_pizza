@@ -1,12 +1,26 @@
-{% for pizza in pizzas %}
-<div>
-    <p>{{pizza.name}}</p>
-    <p>{{pizza.price}}</p>
-    <p>{{pizza.size}}</p>
-    <p>toppings:</p>
-        {% for topping in pizza.toppings.all %}
-            {{ topping.name }}
-        {% endfor %}
-    <p>_________________________________________________________________________________</p>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+
+<div id="section-pizza">
+    <span>
+        Пицца
+    </span>
 </div>
-{% endfor %}
+
+<div id="pizza-container">
+    <div id="pizza-inner-container">
+        {% for pizza in pizzas %}
+            <div class="pizza-block">
+                <img class="pizza-image" src="{{ pizza.image.url }}"/>
+                <span class="pizza-name">{{pizza.name}}</span>
+                <p>{{pizza.price}}</p>
+                <p>{{pizza.size}}</p>
+                {% for topping in pizza.toppings.all %}
+                    {{ topping.name }}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+

@@ -1,0 +1,30 @@
+#section-pizza {
+    width: 100%;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#pizza-container {
+    width: 100%;
+    padding: 0 10% 0 10%;
+}
+
+#pizza-inner-container {
+    width: 100%;
+}
+
+.pizza-block {
+    width: 25%;
+    text-align: center;
+    position: relative;
+}
+
+.pizza-image {
+    width: 100%;
+}
+
+.pizza-name {
+    font-size: 20px;
+    font-weight: bold;
+}
