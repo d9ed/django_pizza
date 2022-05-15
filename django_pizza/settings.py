@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Local
     'users.apps.UsersConfig',
     'pizzas.apps.PizzasConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [
