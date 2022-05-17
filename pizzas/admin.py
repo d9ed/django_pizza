@@ -1,7 +1,8 @@
 from django.contrib import admin
 from tabbed_admin import TabbedModelAdmin
 
-from pizzas.models import Pizza, Topping
+from pizzas.models import Pizza, Topping, PizzaSize
+
 
 class ToppingInLine(admin.StackedInline):
     model = Pizza.toppings.through
@@ -10,6 +11,10 @@ class ToppingInLine(admin.StackedInline):
 # class ToppingInline(admin.TabularInline):
 #     model = Topping
 #     extra = 1
+
+
+class PizzaSizeInline(admin.StackedInline):
+    model = Pizza.sizes.through
 
 
 @admin.register(Topping)
@@ -29,20 +34,15 @@ class ToppingAdmin(TabbedModelAdmin):
     ]
 
 
-@admin.register(Pizza)
-class PizzaAdmin(TabbedModelAdmin):
-    inlines = [ToppingInLine]
+@admin.register(PizzaSize)
+class PizzaSizeAdmin(TabbedModelAdmin):
 
     main_tab = (
         ('Main', {
             'fields': (
-                'name',
-                'price',
                 'size',
-                'image',
             )
         }),
-        ToppingInLine
     )
 
     tabs = [
@@ -50,3 +50,23 @@ class PizzaAdmin(TabbedModelAdmin):
     ]
 
 
+@admin.register(Pizza)
+class PizzaAdmin(TabbedModelAdmin):
+    inlines = [ToppingInLine, PizzaSizeInline]
+
+    main_tab = (
+        ('Main', {
+            'fields': (
+                'name',
+                'price',
+                # 'size',
+                'image',
+            )
+        }),
+        ToppingInLine,
+        PizzaSizeInline
+    )
+
+    tabs = [
+        ('Main', main_tab),
+    ]

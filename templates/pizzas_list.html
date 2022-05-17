@@ -48,6 +48,7 @@
                             data-pizza-name="{{ pizza.name }}"
                             data-pizza-id="{{ pizza.id }}"
                             data-pizza-price="{{ pizza.price }}"
+                            data-pizza-sizes-list="{{ pizza.sizes_list }}"
                             data-pizza-size="{{ pizza.size }}">Заказать {{ pizza.price }}</button>
                 </div>
             {% endfor %}
@@ -64,16 +65,17 @@
           <div class="modal-body">
               <form id="order-pizza-form" action="{% url 'order-pizza-form' %}" method="POST">
               {% csrf_token %}
-
               <input name="pizza_id" type="text" id="pizza_id" hidden>
               <div class="mb-3">
                 <label for="pizza-name" class="col-form-label">Name:</label>
                 <input name="pizza-name" type="text" class="form-control width-94" id="pizza-name" readonly>
               </div>
-              <div class="mb-3">
-                <label for="pizza-size" class="col-form-label">Size:</label>
-                <input name="pizza-size" type="text" class="form-control width-94" id="pizza-size" readonly>
-              </div>
+              <label for="size">Pick a size:</label>
+              <select name="size" id="size"></select>
+<!--              <div class="mb-3">-->
+<!--                <label for="pizza-size" class="col-form-label">Size:</label>-->
+<!--                <input name="pizza-size" type="text" class="form-control width-94" id="pizza-size" readonly>-->
+<!--              </div>-->
               <div class="mb-3">
                 <label for="pizza-price" class="col-form-label">Price:</label>
                 <input name="pizza-price" type="text" class="form-control width-94" id="pizza-price" readonly>
@@ -109,17 +111,24 @@
           // Extract info from data-* attributes
           var name = button.getAttribute('data-pizza-name')
           var price = button.getAttribute('data-pizza-price')
-          var size = button.getAttribute('data-pizza-size')
           var pizzaId = button.getAttribute('data-pizza-id')
+          var sizesList = button.getAttribute('data-pizza-sizes-list').split(" ")
           // Update the modal's content.
           var modalNameInput = exampleModal.querySelector('.modal-body input#pizza-name')
           var modalIdInput = exampleModal.querySelector('.modal-body input#pizza_id')
           var modalPriceInput = exampleModal.querySelector('.modal-body input#pizza-price')
-          var modalSizeInput = exampleModal.querySelector('.modal-body input#pizza-size')
+          var modalSizeInput = exampleModal.querySelector('.modal-body input#size')
+
+           $.each(sizesList, function (i, item) {
+                $('#size').append($('<option>', {
+                    value: item,
+                    text : item
+                }));
+            });
 
           modalNameInput.value = name
           modalPriceInput.value = price
-          modalSizeInput.value = size
+<!--          modalSizeInput.value = size-->
           modalIdInput.value = pizzaId
         })
 
