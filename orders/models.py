@@ -20,3 +20,5 @@ class Order(models.Model):
                               default=STATUS_CHOICES[0][0])
     phone = models.CharField(max_length=50, null=False, blank=False)
     client_name = models.CharField(max_length=150, null=False, blank=False)
+    size = models.IntegerField(null=False, blank=False)
+

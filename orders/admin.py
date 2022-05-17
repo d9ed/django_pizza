@@ -18,6 +18,7 @@ class OrderAdmin(TabbedModelAdmin):
                 'status',
                 'phone',
                 'client_name',
+                'size',
             )
         }),
     )
