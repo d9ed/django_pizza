@@ -3,6 +3,7 @@ from tabbed_admin import TabbedModelAdmin
 
 from pizzas.models import Pizza, Topping
 
+
 class ToppingInLine(admin.StackedInline):
     model = Pizza.toppings.through
     # filter_horizontal = ("toppings",)
