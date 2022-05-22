@@ -61,6 +61,7 @@ class PizzaAdmin(TabbedModelAdmin):
                 'price',
                 # 'size',
                 'image',
+                'is_on_sale',
             )
         }),
         ToppingInLine,
