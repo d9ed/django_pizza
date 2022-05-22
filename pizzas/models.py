@@ -32,6 +32,7 @@ class Pizza(models.Model):
     toppings = models.ManyToManyField(Topping, related_name="pizza_toppings")
     sizes = models.ManyToManyField(PizzaSize, related_name="pizza_sizes")
     image = models.FileField(upload_to="pizza_images/")
+    is_on_sale = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.name}"
