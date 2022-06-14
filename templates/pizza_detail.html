@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            <img src="{{pizza.image.url }}" style="width:100%;"/>
+
+        </div>
+        <div class="col">
+            <div id="pizza-detail-name">
+                <p class="fw-bold">
+                    <h1>{{pizza.name}}</h1>
+                </p>
+            </div>
+            <div class="pizza-detail-toppings" style="width:100%;">
+                <p class="fs-2">
+                    {% for topping in pizza.toppings.all %}
+                        {{ topping.name }}
+                    {% endfor %}
+                </p>
+            </div>
+            <div class="pizza-detail-sizes" style="width:100%;">
+                <div class="container">
+                    <div class="row sizes-container">
+                        {% for size in pizza.sizes.all %}
+                            <div class="col">
+                                    <div class="size {% if forloop.first %}size-active{% endif %}">
+                                        {{ size }} см
+                                    </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    function setActive() {
+        Array.from(document.getElementsByClassName("size")).forEach(function(element) {
+            element.classList.remove("size-active");
+        });
+        this.classList.add("size-active");
+    }
+    Array.from(document.getElementsByClassName("size")).forEach(function(element) {
+         element.addEventListener('click', setActive);
+    });
+</script>
+
+{% endblock %}

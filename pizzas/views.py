@@ -1,6 +1,6 @@
 from django.db.models import Sum
 from django.shortcuts import render
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, DetailView
 from django.http import HttpResponse, JsonResponse
 
 from pizzas.models import Pizza
@@ -18,6 +18,11 @@ class PizzaListView(ListView):
         for pizza in q:
             pizza.sizes_list = ' '.join([str(s.size) for s in pizza.sizes.all()])
         return q
+
+
+class PizzaDetailView(DetailView):
+    model = Pizza
+    template_name = "pizza_detail.html"
 
 
 class PizzaOrderView(View):

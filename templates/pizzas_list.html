@@ -37,11 +37,10 @@
             {% for pizza in pizzas %}
                 <div class="pizza-block">
                     <img src="{{pizza.image.url }}"/>
-                    <p>{{pizza.name}}</p>
+                   <a href="{% url 'pizza-detail' pk=pizza.pk %}"><p>{{pizza.name}}</p></a>
                     <span>
                         {% for topping in pizza.toppings.all %}
                             {{ topping.name }}
-
                         {% endfor %}
                     </span>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
