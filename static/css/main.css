@@ -48,3 +48,38 @@ header span {
 .width-94 {
     width: 94%;
 }
+
+#pizza-detail-name {
+    width:100%;
+    font-weight:900;
+}
+
+.size-label{
+    width:100px;
+    background-color:red;
+    display:inline-block;
+
+}
+
+.size {
+    max-width: 100%;
+    text-align: center;
+    padding: 10px 10px;
+    border: 2px solid #F7DA58;
+    border-radius: 50px;
+    transition: 0.5s ease;
+}
+
+.sizes-container {
+    width: 392px;
+    height: 47px;
+
+}
+
+.size-active {
+    border-radius: 50px;
+    transition: 0.5s ease;
+    max-width: 100%;
+    border: 2px solid #F7DA58;
+    background-color: #F7DA58;
+}
