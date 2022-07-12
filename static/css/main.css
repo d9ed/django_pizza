@@ -83,3 +83,18 @@ header span {
     border: 2px solid #F7DA58;
     background-color: #F7DA58;
 }
+
+#success-popup {
+    display: none;
+    position: fixed;
+    left: 30%;
+    top: 10px;
+    background-color: green;
+    color: white;
+    width: 35%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+
+
+}

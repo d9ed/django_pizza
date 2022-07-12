@@ -30,7 +30,6 @@ class PizzaOrderView(View):
     def post(self, request):
 
         form = PizzaOrderForm(request.POST)
-        print(form.is_valid(),"bla",request.POST)
         if form.is_valid():
             pizza_id = form.cleaned_data['pizza_id']
             pizza = Pizza.objects.filter(id=pizza_id)
@@ -46,7 +45,6 @@ class PizzaOrderView(View):
                         size=form.cleaned_data['size'],
                     )
                     order.save()
-                    print(f'order:{order}')
                     return JsonResponse({'success': True})
-        return JsonResponse({'success': False})
-
+        else:
+            return JsonResponse({'success': False, 'errors': dict(form.errors)})

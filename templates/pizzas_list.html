@@ -28,7 +28,9 @@
 <!--</div>-->
 
 {% block content %}
-
+    <div id="success-popup">
+        Order created successfully!
+    </div>
     <div id="header-block">
         <h1>Пицца</h1>
     </div>
@@ -81,15 +83,18 @@
               </div>
                 <div class="mb-3">
                 <label for="phone" class="col-form-label">Phone:</label>
-                <input name="phone" type="text" class="form-control width-94" id="phone">
+                <input name="phone" type="text" class="form-control width-94" id="phone" onfocus="removeErrors(this)">
+                    <span id="phone_error" style="color: red;"></span>
               </div>
                 <div class="mb-3">
                 <label for="client_name" class="col-form-label">Your Name:</label>
-                <input name="client_name" type="text" class="form-control width-94" id="client_name">
+                <input name="client_name" type="text" class="form-control width-94" id="client_name" onfocus="removeErrors(this)">
+                    <span id="client_name_error" style="color: red;"></span>
               </div>
                 <div class="mb-3">
                 <label for="client_address" class="col-form-label">Your Address:</label>
-                <input name="client_address" type="text" class="form-control width-94" id="client_address">
+                <input name="client_address" type="text" class="form-control width-94" id="client_address" onfocus="removeErrors(this)">
+                    <span id="client_address_error" style="color: red;"></span>
               </div>
                 <div class="modal-footer">
             <button type="button" id="close-modal" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -103,6 +108,10 @@
     </div>
 
     <script>
+        function removeErrors(element) {
+            $('#'+element.id+'_error').text("")
+        }
+
         var exampleModal = document.getElementById('exampleModal')
         exampleModal.addEventListener('show.bs.modal', function (event) {
           // Button that triggered the modal
@@ -131,7 +140,6 @@
           modalIdInput.value = pizzaId
         })
 
-    <!--    document.getElementById('order-pizza-form').addEventListener('submit', function(event){-->
             $('#order-pizza-form').submit(function(e){
             e.preventDefault()
             $.post({
@@ -140,10 +148,20 @@
                     dataType: 'json',
                     data    : $(this).serialize(),
                     success : function(data) {
-                        console.log(data)
+                        if (data['success'] === true) {
+                            $('#exampleModal').modal('toggle');
+                            var successPopup = $('#success-popup')
+                            successPopup.css('display', 'inline');
+                            successPopup.fadeOut(3000)
+                        } else {
+                            for (const error in data['errors']){
+                                var first_field_error = data['errors'][error][0]
+                                $('#'+error+'_error').text(first_field_error)
+                            }
+                        }
                     },
                     error   : function( xhr, err ) {
-                        console.log(xht,err)
+                        console.log('failure', xhr, err)
                     }
                 });
          })
