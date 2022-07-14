@@ -33,7 +33,9 @@ header span {
     text-align: center;
 }
 .pizza-block img {
-    width: 100%;
+    /*width: 100%;*/
+    width: 215px;
+    height: 160px;
 }
 
 .pizza-block p {
