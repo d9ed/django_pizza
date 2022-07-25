@@ -2,6 +2,7 @@ from django.contrib import admin
 from tabbed_admin import TabbedModelAdmin
 
 from .models import CustomUser
+from users.models import FeedbackRequest
 
 
 @admin.register(CustomUser)
@@ -50,4 +51,31 @@ class CustomUserAdmin(TabbedModelAdmin):
         ('Personal info', personal_info_tab),
         ('Permission', permission_tab),
         ('Important dates', important_dates_tab),
+    ]
+
+
+@admin.register(FeedbackRequest)
+class FRAdmin(TabbedModelAdmin):
+    model = FeedbackRequest
+    main_tab = (
+        ('Main', {
+            'fields': (
+                'name',
+                'email',
+                'subject',
+                'message',
+            )
+        })
+    ),
+    status_tab = (
+        ('Status', {
+            "fields": (
+                'feedback_request_status',
+            )
+        })
+    ),
+
+    tabs = [
+        ('Main', main_tab),
+        ('Status', status_tab),
     ]
