@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="feedback_bg">
+    <div class="feedback_rectangle">
+        <form method="post">{% csrf_token %}
+            <h1>Feedback</h1>
+            <div class = feedback_input_style>
+                <div class = 'feedback_name'>
+                    Name
+                    {{ form.name }}
+                </div>
+                <div class = 'feedback_email'>
+                    Email
+                    {{ form.email }}
+                </div>
+                <div class = feedback_subject>
+                    Subject
+                    {{ form.subject }}
+                </div>
+                <div class = 'feedback_message'>
+                    Message
+                    {{ form.message }}
+                </div>
+                <input class = 'feedback_submit' type="submit" value="Save">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
