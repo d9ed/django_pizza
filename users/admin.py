@@ -70,7 +70,7 @@ class FRAdmin(TabbedModelAdmin):
     status_tab = (
         ('Status', {
             "fields": (
-                'feedback_request_status',
+                'status',
             )
         })
     ),
