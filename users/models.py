@@ -18,5 +18,5 @@ class FeedbackRequest(models.Model):
     email = models.EmailField(max_length=255, null=False, blank=False)
     subject = models.CharField(max_length=200, null=False, blank=False)
     message = models.TextField(max_length=600, null=False, blank=False)
-    feedback_request_status = models.CharField(max_length=6, null=False, blank=False, choices=STATUS_CHOICES,
-                                               default=STATUS_CHOICES[0][1])
+    status = models.CharField(max_length=6, null=False, blank=False, choices=STATUS_CHOICES,
+                              default=STATUS_CHOICES[0][1])
