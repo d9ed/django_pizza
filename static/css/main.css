@@ -194,6 +194,7 @@ header span {
     position: absolute;
     bottom: 0;
     width: 100%;
+    margin-bottom: -55px;
 }
 
 .container-pt-4 {
