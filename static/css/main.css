@@ -188,3 +188,17 @@ header span {
 .feedback_input_style div {
     color: #adadad;
 }
+
+.text-center-text-white {
+    background-color: #f1f1f1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.container-pt-4 {
+    justify-content:center;
+    text-align:center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
