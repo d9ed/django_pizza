@@ -3,10 +3,8 @@
 }
 
 header {
-    background-color: rgb(175, 219, 218);
-    height: 100px;
+    background-color: white;
     width: 100%;
-    margin-bottom: 50px;
 }
 
 header span {
@@ -18,6 +16,28 @@ header span {
 
 #header-block {
     text-align: center;
+}
+
+.container-fluid {
+    background-color: #f8f9fa;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+
+}
+.container-fluid span{
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: bs-font, sans-serif;
 }
 
 #content-inner-block {
@@ -32,7 +52,6 @@ header span {
     text-align: center;
 }
 .pizza-block img {
-    /*width: 100%;*/
     width: 215px;
     height: 160px;
 }
@@ -149,29 +168,6 @@ header span {
     font-size: 16px;
 }
 
-/*.feedback_input_field form.name {*/
-/*    color: #333;*/
-/*    width: 100%;*/
-/*    border: none;*/
-/*    outline: none;*/
-/*    background: transparent;*/
-/*    padding: 0 5px;*/
-/*    height: 40px;*/
-/*    border-bottom: solid;*/
-/*}*/
-
-/*.feedback_input_style {*/
-/*    color: #333;*/
-/*    width: 100%;*/
-/*    border: none;*/
-/*    border-bottom: gray;*/
-/*    background: transparent;*/
-/*    padding: 0 5px;*/
-/*    height: 40px;*/
-/*    border-bottom: solid;*/
-/*    margin: 5px;*/
-/*}*/
-
 #id_name, #id_email, #id_subject, #id_message {
     color: gray;
     width: 100%;
@@ -191,4 +187,19 @@ header span {
 
 .feedback_input_style div {
     color: #adadad;
+}
+
+.text-center-text-white {
+    background-color: #f1f1f1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: -55px;
+}
+
+.container-pt-4 {
+    justify-content:center;
+    text-align:center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
