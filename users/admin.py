@@ -24,6 +24,7 @@ class CustomUserAdmin(TabbedModelAdmin):
                 'email',
                 'first_name',
                 'last_name',
+                'phone',
             )
         }),
     )

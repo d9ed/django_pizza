@@ -27,7 +27,7 @@ class Pizza(models.Model):
     #     ('40 cm', '40 cm'),
     # ]
     name = models.CharField(max_length=255, null=False, blank=False)
-    price = models.DecimalField(decimal_places=2, max_digits=4, null=False, blank=False)
+    price = models.FloatField(null=False, blank=False)
     # size = models.CharField(max_length=255, null=False, blank=False, choices=SIZE_CHOICES)
     toppings = models.ManyToManyField(Topping, related_name="pizza_toppings")
     sizes = models.ManyToManyField(PizzaSize, related_name="pizza_sizes")

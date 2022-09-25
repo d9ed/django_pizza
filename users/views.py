@@ -6,7 +6,7 @@ from users.models import FeedbackRequest
 
 
 class SignUpView(CreateView):
-    template_name = 'registration/register.html'
+    template_name = 'signup.html'
     success_url = reverse_lazy('pizzas')
     form_class = UserRegisterForm
 

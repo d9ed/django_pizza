@@ -16,6 +16,8 @@ class PizzaOrderForm(forms.Form):
             pizza_id = int(self.cleaned_data.get("pizza_id"))
         except ValueError:
             raise ValidationError('pizza_id or size not int')
+        except TypeError:
+            raise ValidationError("WRONG ARGUMENT TYPEEE")
         phone = self.cleaned_data.get("phone")
         client_name = self.cleaned_data.get("client_name")
         client_address = self.cleaned_data.get("client_address")
