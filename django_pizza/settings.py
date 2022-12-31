@@ -100,10 +100,10 @@ WSGI_APPLICATION = 'django_pizza.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd4kceb26543on8',
-        'USER': 'fbjkvjgyazohxc',
-        'PASSWORD': '14b72a378c5a7f163ac26355934d96930c62feb508d341f7b7e949b1cdf3d4a5',
-        'HOST': 'ec2-44-197-128-108.compute-1.amazonaws.com',
+        'NAME': 'pizzas',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
     # 'default': {
@@ -157,3 +157,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
+LOGIN_REDIRECT_URL = 'pizzas'
+LOGOUT_REDIRECT_URL = 'pizzas'

@@ -12,11 +12,10 @@ class PizzaListView(ListView):
     model = Pizza
     template_name = 'pizzas_list.html'
     context_object_name = 'pizzas'
+    paginate_by = 10
 
     def get_queryset(self):
         q = super(PizzaListView, self).get_queryset().filter(is_on_sale=True)
-        for pizza in q:
-            pizza.sizes_list = ' '.join([str(s.size) for s in pizza.sizes.all()])
         return q
 
 
