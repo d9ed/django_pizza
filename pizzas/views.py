@@ -1,9 +1,9 @@
-from django.db.models import Sum
+from django.db.models import Sum, Q, Count
 from django.shortcuts import render
 from django.views.generic import ListView, View, DetailView
 from django.http import HttpResponse, JsonResponse
 
-from pizzas.models import Pizza
+from pizzas.models import Pizza, PizzaFilter
 from pizzas.forms import PizzaOrderForm
 from orders.models import Order
 
@@ -12,12 +12,28 @@ class PizzaListView(ListView):
     model = Pizza
     template_name = 'pizzas_list.html'
     context_object_name = 'pizzas'
+    paginate_by = 12
 
     def get_queryset(self):
-        q = super(PizzaListView, self).get_queryset().filter(is_on_sale=True)
-        for pizza in q:
-            pizza.sizes_list = ' '.join([str(s.size) for s in pizza.sizes.all()])
+        q = super(PizzaListView, self).get_queryset().annotate(sizes_count=Count("sizes")).filter(
+            Q(is_on_sale=True) &
+            Q(sizes_count__gt=0)
+        )
+
+        pizza_filter = self.request.GET.get('filter', None)
+
+        if pizza_filter is not None:
+            q = q.filter(
+                Q(filters=PizzaFilter.objects.filter(name=pizza_filter).first())
+            )
         return q
+
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PizzaListView, self).get_context_data()
+        context['filters'] = PizzaFilter.objects.all()
+
+        return context
 
 
 class PizzaDetailView(DetailView):

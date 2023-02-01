@@ -100,10 +100,10 @@ WSGI_APPLICATION = 'django_pizza.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd4ltvgh6d2rlb4',
-        'USER': 'ywihqfpovekopu',
-        'PASSWORD': '9f50c03466221e345e75a41610148d9cd956526626d298916122d3bc95adb515',
-        'HOST': 'ec2-44-193-178-122.compute-1.amazonaws.com',
+        'NAME': 'pizzas',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
     # 'default': {

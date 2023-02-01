@@ -1,7 +1,7 @@
 from django.contrib import admin
 from tabbed_admin import TabbedModelAdmin
 
-from pizzas.models import Pizza, Topping, PizzaSize
+from pizzas.models import Pizza, Topping, PizzaSize, PizzaFilter
 
 
 class ToppingInLine(admin.StackedInline):
@@ -15,6 +15,25 @@ class ToppingInLine(admin.StackedInline):
 
 class PizzaSizeInline(admin.StackedInline):
     model = Pizza.sizes.through
+
+
+class PizzaFilterInLine(admin.StackedInline):
+    model = Pizza.filters.through
+
+
+@admin.register(PizzaFilter)
+class PizzaFilterAdmin(TabbedModelAdmin):
+    main_tab = (
+        ('Main', {
+            'fields': (
+                'name',
+            )
+        }),
+    )
+
+    tabs = [
+        ('Main', main_tab),
+    ]
 
 
 @admin.register(Topping)
@@ -52,7 +71,7 @@ class PizzaSizeAdmin(TabbedModelAdmin):
 
 @admin.register(Pizza)
 class PizzaAdmin(TabbedModelAdmin):
-    inlines = [ToppingInLine, PizzaSizeInline]
+    inlines = [ToppingInLine, PizzaSizeInline, PizzaFilterInLine]
 
     main_tab = (
         ('Main', {
@@ -65,7 +84,8 @@ class PizzaAdmin(TabbedModelAdmin):
             )
         }),
         ToppingInLine,
-        PizzaSizeInline
+        PizzaSizeInline,
+        PizzaFilterInLine
     )
 
     tabs = [

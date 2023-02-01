@@ -1,31 +1,13 @@
 {% extends 'base.html' %}
 
 {% load static %}
-    {% block extrahead %}
+
+{% load pizza_extras %}
+
+{% block extrahead %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    {% endblock extrahead %}
+{% endblock extrahead %}
 
-<!--<div id="section-pizza">-->
-<!--    <span>-->
-<!--        Пицца-->
-<!--    </span>-->
-<!--</div>-->
-
-<!--<div id="pizza-container">-->
-<!--    <div id="pizza-inner-container">-->
-<!--        {% for pizza in pizzas %}-->
-<!--            <div class="pizza-block">-->
-<!--                <img class="pizza-image" src="{{ pizza.image.url }}"/>-->
-<!--                <span class="pizza-name">{{pizza.name}}</span>-->
-<!--                <p>{{pizza.price}}</p>-->
-<!--                <p>{{pizza.size}}</p>-->
-<!--                {% for topping in pizza.toppings.all %}-->
-<!--                    {{ topping.name }}-->
-<!--                {% endfor %}-->
-<!--            </div>-->
-<!--        {% endfor %}-->
-<!--    </div>-->
-<!--</div>-->
 
 {% block content %}
     <div id="success-popup">
@@ -33,6 +15,16 @@
     </div>
     <div id="header-block">
         <h1>Пицца</h1>
+        <div>
+            {% for filter in filters %}
+                <a href="{% url 'pizzas' %}?filter={{filter.name}}" class="btn btn-outline-success">
+                    {{ filter.name }}
+                </a>
+
+            {% endfor %}
+        </div>
+
+
     </div>
     <div id="content-block">
         <div id="content-inner-block">
@@ -49,7 +41,7 @@
                             data-pizza-name="{{ pizza.name }}"
                             data-pizza-id="{{ pizza.id }}"
                             data-pizza-price="{{ pizza.price }}"
-                            data-pizza-sizes-list="{{ pizza.sizes_list }}"
+                            data-pizza-sizes-list="{{ pizza.sizes.all|sizes_to_string }}"
                             data-pizza-size="{{ pizza.size }}">Заказать {{ pizza.price }}</button>
                 </div>
             {% endfor %}
@@ -126,14 +118,17 @@
           var modalIdInput = exampleModal.querySelector('.modal-body input#pizza_id')
           var modalPriceInput = exampleModal.querySelector('.modal-body input#pizza-price')
           var modalSizeInput = exampleModal.querySelector('.modal-body input#size')
-
+          var old_length = $('#size').length
+           $('#size').empty()
            $.each(sizesList, function (i, item) {
+
                 $('#size').append($('<option>', {
                     value: item,
                     text : item
                 }));
             });
 
+          console.log(old_length)
           modalNameInput.value = name
           modalPriceInput.value = price
 <!--          modalSizeInput.value = size-->

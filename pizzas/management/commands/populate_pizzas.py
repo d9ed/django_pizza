@@ -30,29 +30,6 @@ def get_topping_value():
 def random_picker(list_name):
     return random.choice(list_name)
 
-
-# def random_topping():
-#     # counter = random.randint(5,10)
-#     topping_value = get_topping_value()
-#     counter = 1
-#     updated_list = []
-#     for topping in get_topping_value():
-#         print(topping, 'topping')
-#         if topping not in updated_list:
-#             updated_list.append(topping)
-#             print(updated_list, 'list')
-#             counter -= 1
-#         if counter == 0:
-#             break
-#     return updated_list
-
-
-# def random_pizza(names_list, sizes_list, images_list):
-#         for pizza_name in names_list:
-#             return Pizza.objects.get_or_create(name=pizza_name, toppings =generator(get_topping_value()),
-#                                                sizes=generator(sizes_list), image=generator(images_list))
-
-
 class Command(BaseCommand):
     help = 'Does shit'
 
@@ -113,58 +90,3 @@ class Command(BaseCommand):
                     break
             return "done"
         generate_pizza = pizza_generator(names_list, images_list)
-        # print(generate_pizza)
-        print(image_test)
-        # print(Pizza.image._get_file)
-        # print(Pizza.image.path())
-        # print(Pizza.image.__dir__())
-        # imagee = []
-        # print(Pizza.image.__getattribute__('image'))
-        # print(Pizza.image.url(imagee), 'imagee')
-        # print(Pizza.image.url(Pizza.image), 'pizzaimg')
-        # print(Pizza.image.url('image'), 'aoao')
-        # print(os.path.normpath("media/pizza_images/"))
-        # print(os.path.dirname("media/pizza_images/"))
-        # print(os.path.abspath("media/pizza_images/"))
-        # print(os.path.isfile("media/pizza_images/"))
-        # print(os.path.realpath("media/pizza_images/"))
-        # print(os.path.realpath("media/pizza_images/"))
-        # print(os.path.lexists("media/pizza_images/"))
-        # print(os.path.isabs("media/pizza_images/"))
-        # imgg = []
-        # for image in images_list:
-        #     Pizza.objects.get_or_create(image=image)
-        # print(len(Topping.name))
-        # print(sum(Topping.objects.get_queryset()))
-        # print(random_pizza(names_list, toppings_li
-        # st, sizes_list, images_list))
-        # print(random.choice(Topping.objects))
-        # print(random_topic(toppings_list))
-        # for topping_object in Topping.objects.only('name'):
-        #     print(id(topping_object))
-
-        def check(file):
-            counter = 0
-            for thing in file:
-                print(thing,'this is the thing')
-                counter +=1
-                if counter == 31:
-                    break
-        # for topping in Topping.objects.values_list():
-        #     test.append(topping)
-        #     print(test)
-        # random_pizza(names_list, sizes_list, images_list)
-        # check(Topping.objects.values_list())
-        # pizza_sizes = PizzaSize.size
-        # for topping in toppings_list:
-        #     Pizza.toppings.get_or_create(topping)
-        # def check_direction(file):
-        #     counter = 0
-        #     for thing in file:
-        #         print(thing)
-        #         counter +=1
-        #         if counter == 5:
-        #             break
-        # check_direction(toppings_list)
-        # check_direction(pizza_names)
-        # check_direction(Topping)
